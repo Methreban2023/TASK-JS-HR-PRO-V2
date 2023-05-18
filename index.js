@@ -38,5 +38,11 @@ class Manager extends Employee {
   }
 } // Manager
 
-const employees = new Employee(employeesJSON.map(emp));
-const managers = new Manager(managersJSON.map());
+// const employees = new Employee(employeesJSON.map(emp));
+// const managers = new Manager(managersJSON.map());
+const employees[];
+const managers[];
+employeesJSON.map((emp)=> employees.push(emp));
+managersJSON.map((manage)=> managers.push(manage));
+
+
