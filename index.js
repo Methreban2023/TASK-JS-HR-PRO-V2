@@ -29,8 +29,12 @@ class Manager extends Employee {
     //  since <workingYears>
     //  Bonus % <bonusPercentage></bonusPercentage>
     console.log(this.name);
-    console.log(`since ${2023 - this.yearJoined}`);
+    console.log(`since ${this.getWorkingYears}`);
     console.log(`Bonus % ${this.bonusPercentage} / ${this.bonusPercentage}`);
+  }
+  getWorkingYears() {
+    let year_worked = 2023 - this.yearJoined;
+    return year_worked;
   }
 } // Manager
 
