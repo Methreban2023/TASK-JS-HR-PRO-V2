@@ -79,3 +79,26 @@ const promotionCandidate = employees.filter((emp) => {
   if (emp.salary > 8000) return emp;
 });
 console.log(promotionCandidate);
+
+let highest = employees[0].salary;
+
+const mostPaidEmployee = employees.forEach((emp) => {
+  if (emp.salary > highest) highest = emp.salary;
+  return emp;
+});
+console.log(mostPaidEmployee);
+
+const totalSalaries = employees.reduce(
+  (total, salary1) => total + salary1.salary,
+  0
+);
+console.log(`the total salaries is ${totalSalaries}`);
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+const employeesSorted = employees.map((emp) => {
+  return emp.salary;
+});
+employeesSorted.sort(compareNumbers);
+console.log(employeesSorted);
