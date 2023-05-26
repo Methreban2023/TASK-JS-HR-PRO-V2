@@ -25,17 +25,16 @@ class Manager extends Employee {
     this.salary = this.salary + increaseAmount;
   }
 
-  logManagerInfo() {
-    //   <name>
-    //  since <workingYears>
-    //  Bonus % <bonusPercentage></bonusPercentage>
-    console.log(this.name);
-    console.log(`since ${this.getWorkingYears()}`);
-    console.log(`Bonus % ${this.bonusPercentage} / ${this.bonusPercentage}`);
-  }
   getWorkingYears() {
     let year_worked = 2023 - this.yearJoined;
     return year_worked;
+  }
+  logManagerInfo() {
+    console.log(
+      `${this.name} \n since ${this.getWorkingYears()} \n Bonus % ${
+        this.bonusPercentage
+      } `
+    );
   }
 } // Manager
 
@@ -58,35 +57,38 @@ employees.forEach((emp) => console.log(emp.idBadge()));
 const superHeroes = employees.filter((emp) => emp.position === "Developer");
 console.log(superHeroes);
 
-managers.map((manage) => {
+const managersRaise = managers.map((manage) => {
   if (manage.getWorkingYears() > 11) manage.salaryIncrease(1000);
 });
-console.log(managers);
+console.log(managersRaise);
 
 managers.forEach((manage) => manage.logManagerInfo());
 
-const seniorExecutives = managers.filter((manage) => {
+const seniorExecutives = managers.map((manage) => {
   if (manage.yearJoined < 2012) return manage.name;
 });
 console.log(seniorExecutives);
 
-const lowestBonus = managers.find((manage) => {
-  if (manage.bonusPercentage === 0.1) return manage;
-});
+const lowestBonus = managers.find((manage) => manage.bonusPercentage === 0.1);
 console.log(lowestBonus);
 
 const promotionCandidate = employees.filter((emp) => {
-  if (emp.salary > 8000) return emp;
+  emp.salary > 8000;
 });
-console.log(promotionCandidate);
+console.log(`the promotionCandidate : ${promotionCandidate}`);
 
-let highest = employees[0].salary;
+// let highest = employees[0].salary;
 
-const mostPaidEmployee = employees.forEach((emp) => {
-  if (emp.salary > highest) highest = emp.salary;
-  return emp;
-});
-console.log(mostPaidEmployee);
+// const mostPaidEmployee = employees.forEach((emp) => {
+//   if (emp.salary > highest) highest = emp.salary;
+//   return emp;
+// });
+// console.log(mostPaidEmployee);
+const mostPaidEmployee = employees.find(
+  (empWithHighSalary) =>
+    empWithHighSalary.salary === Math.max(...employees.map((emp) => emp.salary))
+);
+console.log(`the most paid employee is: ${mostPaidEmployee}`);
 
 const totalSalaries = employees.reduce(
   (total, salary1) => total + salary1.salary,
@@ -97,8 +99,6 @@ console.log(`the total salaries is ${totalSalaries}`);
 function compareNumbers(a, b) {
   return a - b;
 }
-const employeesSorted = employees.map((emp) => {
-  return emp.salary;
-});
+const employeesSorted = employees.map((emp) => emp.salary);
 employeesSorted.sort(compareNumbers);
 console.log(employeesSorted);
